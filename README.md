@@ -12,8 +12,25 @@ Le compte social (TikTok / Instagram) sert d'acquisition ; ce site transforme l'
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # build de production (39 pages statiques)
+npm run build      # export statique dans out/ (39 pages)
 ```
+
+## Déploiement — GitHub Pages
+
+Le site est entièrement statique (`output: "export"`).
+Le workflow `.github/workflows/deploy-pages.yml` construit et publie à chaque push sur `main`.
+
+1. Repo → **Settings → Pages → Source : « GitHub Actions »** (une seule fois).
+2. Push sur `main` (ou Actions → *Deploy to GitHub Pages* → *Run workflow*).
+3. Site : `https://cours-avec-bruno.github.io/veyora/`
+
+Détails techniques :
+- `NEXT_PUBLIC_BASE_PATH` (`/veyora`) et `NEXT_PUBLIC_SITE_URL` sont injectés par le workflow ; vides en local.
+- Pas de serveur d'images sur Pages : `scripts/optimize-images.mjs` génère des WebP en 6 largeurs
+  (`public/images/_opt/`, non versionné) et `src/lib/image-loader.ts` choisit la bonne taille.
+- `scripts/flatten-rsc.mjs` (postbuild) duplique les fichiers de préchargement RSC sous le nom attendu
+  par le routeur client — sans lui, la navigation fonctionne mais génère des 404 sur un hébergeur de fichiers.
+- Domaine perso plus tard : ajouter `public/CNAME`, retirer `NEXT_PUBLIC_BASE_PATH` du workflow.
 
 ## Stack
 

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps<"/destinations/[slu
     title,
     description: `${d.tagline} ${d.intro.split(". ")[0]}.`,
     alternates: { canonical: `/destinations/${d.slug}` },
-    openGraph: { title, images: [{ url: photo(d.image).src }] },
+    openGraph: { title, images: [{ url: `${site.url}${photo(d.image).src}` }] },
   };
 }
 

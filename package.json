@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/optimize-images.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/optimize-images.mjs",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "npx serve out",
+    "lint": "eslint",
+    "postbuild": "node scripts/flatten-rsc.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.45.0",
@@ -22,6 +25,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

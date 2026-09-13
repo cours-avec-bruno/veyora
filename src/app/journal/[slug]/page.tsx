@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps<"/journal/[slug]">)
     title: a.title,
     description: a.excerpt,
     alternates: { canonical: `/journal/${a.slug}` },
-    openGraph: { type: "article", title: a.title, description: a.excerpt, publishedTime: a.date, images: [{ url: photo(a.image).src }] },
+    openGraph: { type: "article", title: a.title, description: a.excerpt, publishedTime: a.date, images: [{ url: `${site.url}${photo(a.image).src}` }] },
   };
 }
 

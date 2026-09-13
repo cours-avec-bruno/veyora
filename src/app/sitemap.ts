@@ -4,6 +4,8 @@ import { guides } from "@/data/guides";
 import { destinations } from "@/data/destinations";
 import { articles } from "@/data/articles";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date("2026-09-13");
   const staticRoutes = ["", "/guides", "/destinations", "/journal", "/methode", "/a-propos", "/contact"].map((p) => ({

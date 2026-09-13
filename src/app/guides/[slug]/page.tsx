@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps<"/guides/[slug]">):
     title,
     description,
     alternates: { canonical: `/guides/${g.slug}` },
-    openGraph: { title, description, images: [{ url: photo(g.cover).src }] },
+    openGraph: { title, description, images: [{ url: `${site.url}${photo(g.cover).src}` }] },
   };
 }
 

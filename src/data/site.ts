@@ -1,6 +1,7 @@
 export const site = {
   name: "Veyora",
-  url: "https://veyora.fr",
+  // Absolute URL of the deployed site (includes the GitHub Pages sub-path when set).
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://veyora.fr",
   tagline: "Voyager plus loin. Dépenser moins. Polluer moins.",
   description:
     "Guides de voyage numériques pour partir plus loin, dépenser moins et polluer moins : itinéraires testés, budgets transparents, transports sans voiture.",

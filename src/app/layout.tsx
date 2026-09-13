@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: "Veyora — Voyager plus loin. Dépenser moins.",
     description: site.description,
-    images: [{ url: "/images/hero.jpg", width: 1600, height: 2400, alt: "Voiture de train ouverte sur une vallée alpine" }],
+    images: [{ url: `${site.url}/images/hero.jpg`, width: 1600, height: 2400, alt: "Voiture de train ouverte sur une vallée alpine" }],
   },
   twitter: { card: "summary_large_image" },
   alternates: { canonical: "/" },
