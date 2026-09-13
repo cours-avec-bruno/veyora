@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { getImageProps } from "next/image";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useReducedMotionSafe } from "@/components/ui/Motion";
 import { ArrowDown } from "lucide-react";
 import { photo } from "@/data/photos";
 import { featuredGuide } from "@/data/guides";
@@ -14,7 +15,7 @@ import { price } from "@/lib/format";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const mobile = photo("hero");
   const desktop = photo("hero");
 

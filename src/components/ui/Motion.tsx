@@ -1,9 +1,26 @@
 "use client";
 
-import { animate, motion, useInView, useReducedMotion, type HTMLMotionProps } from "motion/react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { animate, motion, useInView, type HTMLMotionProps } from "motion/react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+const QUERY = "(prefers-reduced-motion: reduce)";
+/**
+ * Hydration-safe reduced-motion flag: false during SSR and hydration,
+ * then the real preference. (motion's hook differs between server and client.)
+ */
+export function useReducedMotionSafe() {
+  return useSyncExternalStore(
+    (cb) => {
+      const mq = window.matchMedia(QUERY);
+      mq.addEventListener("change", cb);
+      return () => mq.removeEventListener("change", cb);
+    },
+    () => window.matchMedia(QUERY).matches,
+    () => false,
+  );
+}
 
 /** Fade + short rise when entering the viewport. Once. */
 export function Reveal({
@@ -97,13 +114,14 @@ export function CountUp({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!inView || reduce) return;
+    if (!inView) return;
+    // Same first render on server and client; reduced motion just jumps to the value.
     const controls = animate(0, to, {
-      duration,
+      duration: reduce ? 0 : duration,
       ease,
       onUpdate: (v) => setValue(Math.round(v)),
     });
@@ -114,7 +132,7 @@ export function CountUp({
     <span ref={ref} className={className} aria-label={`${prefix}${to}${suffix}`}>
       <span aria-hidden>
         {prefix}
-        {(reduce ? to : value).toLocaleString("fr-FR")}
+        {value.toLocaleString("fr-FR")}
         {suffix}
       </span>
     </span>

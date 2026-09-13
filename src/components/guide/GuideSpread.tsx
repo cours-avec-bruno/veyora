@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { useReducedMotionSafe } from "@/components/ui/Motion";
 import { useRef } from "react";
 import type { Guide } from "@/data/types";
 import { PageAddresses, PageBudget, PageChecklist, PageCover, PageDay, PageMap } from "./GuidePages";
@@ -12,7 +13,7 @@ import { PageAddresses, PageBudget, PageChecklist, PageCover, PageDay, PageMap }
  */
 export function GuideSpread({ guide }: { guide: Guide }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 25%"] });
   const p = scrollYProgress;
   const still = !!reduce;
