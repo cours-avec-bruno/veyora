@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps<"/guides/[slug]">):
   const g = getGuide(slug);
   if (!g) return {};
   const title = `${g.title} — ${g.subtitle}`;
-  const description = `${g.summary.split(". ")[0]}. Guide PDF de ${g.pages} pages, budget ≈ ${g.budget} €, ${price(g.price)}.`;
+  const description = `${g.subtitle} Guide PDF de ${g.pages} pages, ${price(g.price)}.`;
   return {
     title,
     description,
@@ -66,7 +66,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
 
   const received = [
     { value: String(g.pages), label: "pages", note: "Mise en page lisible sur téléphone" },
-    { value: "1", label: "itinéraire complet", note: `${g.days} jours, heure par heure` },
+    { value: String(g.count.value), label: g.count.label, note: g.duration },
     { value: String(g.maps), label: "cartes", note: "Itinéraire, sentiers, arrêts" },
     { value: "€", label: "budget détaillé", note: "Chaque poste, chaque jour" },
     { value: "✓", label: "checklist départ", note: "De J-60 à J-1" },
@@ -83,7 +83,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
           description: g.summary,
           image: `${site.url}${photo(g.cover).src}`,
           brand: { "@type": "Brand", name: site.name },
-          sku: `VEY-${g.number}`,
+          sku: `VEY-${g.volume}`,
           offers: {
             "@type": "Offer",
             price: g.price.toFixed(2),
@@ -118,19 +118,19 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
                 </div>
               </Reveal>
               <p className="t-meta mx-auto mt-8 flex max-w-[19rem] items-center justify-between gap-4 text-muted sm:max-w-[26rem] lg:max-w-[34rem]">
-                <span>Guide N° {g.number} · PDF · {g.pages} pages</span>
+                <span>Vol. {g.volume} · PDF · {g.pages} pages</span>
                 <a href="#apercu" className="link-u-static text-ink">Feuilleter</a>
               </p>
             </div>
           </div>
 
           <div className="lg:col-span-6">
-            <Eyebrow index={`N° ${g.number}`}>{dest?.region ?? "Guide"}</Eyebrow>
+            <Eyebrow index={`Vol. ${g.volume}`}>{g.kind}</Eyebrow>
             <h1 className="mt-6 font-serif text-[clamp(3.4rem,8vw,7.2rem)] leading-[0.86] tracking-[-0.035em] uppercase">{g.title}</h1>
             <p className="t-h2 mt-4 italic text-ink-2">{g.subtitle}</p>
 
             <ul className="t-label mt-8 flex flex-wrap gap-2 text-ink">
-              {[`${g.days} jours`, g.noCar ? "Sans voiture" : g.transport, ...g.types].map((t) => (
+              {[g.scope, g.intent.word, g.format].map((t) => (
                 <li key={t} className="rounded-full border border-ink/20 px-3 py-1.5">{t}</li>
               ))}
             </ul>
@@ -141,10 +141,10 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
 
             <dl className="mt-10 grid grid-cols-2 border-t border-ink sm:grid-cols-3">
               {[
-                ["Budget total", `≈ ${budget(g.budget)}`],
-                ["Durée", `${g.days} jours`],
+                [`Budget · ${g.sample}`, `≈ ${budget(g.budget)}`],
+                ["Durée", g.duration],
                 ["Transport", g.transport],
-                ["Logistique", g.logistics],
+                ["Zone", g.area],
                 ["Saison", g.season],
                 ["Contenu", `${g.pages} p. · ${g.maps} cartes`],
               ].map(([k, v]) => (
@@ -162,7 +162,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
                   <PriceTag value={g.price} size="lg" className="mt-2" />
                 </div>
                 <p className="t-meta max-w-[22ch] text-right text-muted">
-                  ≈ {((g.price / g.budget) * 100).toLocaleString("fr-FR", { maximumFractionDigits: 1 })} % du budget du voyage
+                  ≈ {((g.price / g.budget) * 100).toLocaleString("fr-FR", { maximumFractionDigits: 1 })} % du budget d&apos;une escapade ({g.sample})
                 </p>
               </div>
               <BuyButton guide={g} className="mt-6 w-full" />
@@ -223,7 +223,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
       {/* ── Budget ───────────────────────────────────────────── */}
       <section className="bg-paper-2 section-y" aria-labelledby="budget-title">
         <div className="container-v">
-          <Eyebrow index="03">Budget</Eyebrow>
+          <Eyebrow index="03">Budget · exemple : {g.sample}</Eyebrow>
           <SplitTitle id="budget-title" as="h2" text={"Vous savez combien\nça va coûter."} className="t-h1 mt-6 mb-14" />
           <BudgetBreakdown guide={g} />
         </div>
@@ -233,7 +233,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
       <section className="section-y" aria-labelledby="itin-title">
         <div className="container-v grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Eyebrow index="04">Itinéraire</Eyebrow>
+            <Eyebrow index="04">Itinéraire · exemple : {g.sample}</Eyebrow>
             <h2 id="itin-title" className="t-h1 mt-6">Un extrait, jour par jour.</h2>
             <p className="mt-6 text-graphite">
               Le guide détaille chaque journée : trajets et horaires, dépenses, temps forts et alternative en cas de pluie.
@@ -311,7 +311,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
       <section className="bg-paper-2/60 section-y" aria-labelledby="related-title">
         <div className="container-v">
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <h2 id="related-title" className="t-h1">D&apos;autres voyages déjà pensés.</h2>
+            <h2 id="related-title" className="t-h1">Dans la même collection.</h2>
             <Link href="/guides" className="link-u-static">Toute la collection</Link>
           </div>
           <div className="rail -mx-[var(--gutter)] mt-14 gap-6 px-[var(--gutter)] md:mx-0 md:grid md:grid-cols-3 md:gap-10 md:px-0">

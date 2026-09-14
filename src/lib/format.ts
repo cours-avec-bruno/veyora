@@ -5,8 +5,8 @@ const eurRound = new Intl.NumberFormat("fr-FR", {
   maximumFractionDigits: 0,
 });
 
-/** 6,90 € */
-export const price = (n: number) => eur.format(n);
+/** 23 € · 6,90 € — decimals only when there are some */
+export const price = (n: number) => (Number.isInteger(n) ? eurRound : eur).format(n);
 
 /** 239 € */
 export const budget = (n: number) => eurRound.format(n);

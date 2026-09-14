@@ -67,7 +67,7 @@ export function StickyBuyBar({ guide, anchorId }: { guide: Guide; anchorId: stri
     >
       <div className="flex items-center justify-between gap-4">
         <div className="min-w-0">
-          <p className="truncate font-serif text-xl leading-none">{guide.title} · {guide.days} jours</p>
+          <p className="truncate font-serif text-xl leading-none">{guide.title}</p>
           <p className="t-meta mt-1 whitespace-nowrap text-muted">{price(guide.price)} · PDF</p>
         </div>
         <BuyButton guide={guide} compact className="shrink-0" />

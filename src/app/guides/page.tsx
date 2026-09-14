@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { guides } from "@/data/guides";
+import { price } from "@/lib/format";
 import { PageHero } from "@/components/layout/PageHero";
 import { GuidesBrowser } from "./GuidesBrowser";
 import { Newsletter } from "@/sections/home/Newsletter";
@@ -30,7 +31,7 @@ export default function GuidesPage() {
             </div>
             <div>
               <dt className="t-label text-muted">Dès</dt>
-              <dd className="t-num mt-2 text-4xl">{min.toFixed(2).replace(".", ",")}€</dd>
+              <dd className="t-num mt-2 text-4xl">{price(min)}</dd>
             </div>
             <div>
               <dt className="t-label text-muted">Voiture</dt>

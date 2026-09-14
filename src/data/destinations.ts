@@ -19,7 +19,7 @@ export const destinations: Destination[] = [
     coords: "46.28° N · 13.89° E",
     image: "slovenie-bohinj",
     secondaryImage: "ljubljana",
-    guideSlug: "slovenie-4-jours",
+    guideSlug: "10-escapades-europe",
     why: [
       { title: "Tout est à moins de 2 h", text: "Ljubljana, Bled et Bohinj tiennent sur une seule ligne de bus régional." },
       { title: "La montagne sans l'addition", text: "Chambres d'hôtes à 28 €, cuisine de gostilna à 12 €." },
@@ -49,7 +49,7 @@ export const destinations: Destination[] = [
     coords: "38.72° N · 9.14° W",
     image: "lisbonne",
     secondaryImage: "porto",
-    guideSlug: "portugal-7-jours-sans-voiture",
+    guideSlug: "10-escapades-europe",
     why: [
       { title: "Des trains à 2,40 €", text: "Lisbonne–Sintra ou Lisbonne–Cascais pour le prix d'un café en ville." },
       { title: "Le menu du jour existe encore", text: "Soupe, plat, boisson : 9 à 11 € dans les tascas de quartier." },
@@ -79,7 +79,7 @@ export const destinations: Destination[] = [
     coords: "46.01° N · 9.28° E",
     image: "varenna",
     secondaryImage: "milan-tram",
-    guideSlug: "italie-du-nord-5-jours-en-train",
+    guideSlug: "france-italie-du-nord",
     why: [
       { title: "Direct depuis la France", text: "Frecciarossa Paris–Milan en 7 h, Lyon–Milan en 5 h." },
       { title: "Le lac côté villages", text: "Varenna et Bellano plutôt que Côme, pour moitié prix." },
@@ -109,7 +109,7 @@ export const destinations: Destination[] = [
     coords: "47.26° N · 11.39° E",
     image: "autriche",
     secondaryImage: "autriche-mood",
-    guideSlug: "tyrol-4-jours",
+    guideSlug: "10-escapades-europe",
     why: [
       { title: "Une nuit d'hôtel en moins", text: "Le Nightjet remplace un trajet et une chambre." },
       { title: "Des transports inclus", text: "La carte d'hôte couvre bus et remontées selon les vallées." },
@@ -139,7 +139,7 @@ export const destinations: Destination[] = [
     coords: "43.45° N · 2.79° W",
     image: "espagne",
     secondaryImage: "coast-stairs",
-    guideSlug: "pays-basque-5-jours-a-pied",
+    guideSlug: "10-escapades-europe",
     why: [
       { title: "Accessible en TER", text: "Hendaye, puis l'Euskotren qui passe la frontière." },
       { title: "La côte à pied", text: "Des étapes de 1 h 30 à 4 h, retour en bus." },
@@ -169,7 +169,7 @@ export const destinations: Destination[] = [
     coords: "45.08° N · 13.64° E",
     image: "croatie",
     secondaryImage: "rovinj-street",
-    guideSlug: "istrie-6-jours",
+    guideSlug: "10-escapades-europe",
     why: [
       { title: "L'arrière-saison", text: "En juin et septembre, les prix chutent de 40 %." },
       { title: "La Parenzana", text: "Une voie ferrée devenue piste, en descente." },
@@ -199,7 +199,7 @@ export const destinations: Destination[] = [
     coords: "46.59° N · 7.91° E",
     image: "suisse",
     secondaryImage: "train-leaning",
-    guideSlug: "oberland-3-jours",
+    guideSlug: "10-escapades-europe",
     why: [
       { title: "Monter en train, descendre à pied", text: "La moitié des billets, deux fois plus de paysage." },
       { title: "Le demi-tarif", text: "Rentable dès le deuxième jour dans la vallée." },
@@ -229,7 +229,7 @@ export const destinations: Destination[] = [
     coords: "56.82° N · 5.10° W",
     image: "ecosse",
     secondaryImage: "hiker-moor",
-    guideSlug: "highlands-6-jours",
+    guideSlug: "10-escapades-europe",
     why: [
       { title: "Une ligne mythique", text: "Glasgow–Mallaig, 5 h 20 de lochs et de landes." },
       { title: "Des auberges au pied des sentiers", text: "Dès 32 € la nuit à Glencoe." },

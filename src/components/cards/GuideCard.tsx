@@ -4,7 +4,7 @@ import type { Guide } from "@/data/types";
 import { GuideCover } from "@/components/guide/GuideCover";
 import { ModeRow } from "@/components/icons";
 import { PriceTag } from "@/components/ui/Primitives";
-import { budget, cn } from "@/lib/format";
+import { cn, price } from "@/lib/format";
 
 export function GuideCard({
   guide,
@@ -22,7 +22,7 @@ export function GuideCard({
     <Link
       href={`/guides/${guide.slug}`}
       className={cn("group block focus-visible:outline-offset-8", className)}
-      aria-label={`${guide.title} — ${guide.subtitle}, ${guide.price.toFixed(2).replace(".", ",")} €`}
+      aria-label={`${guide.title} — ${guide.subtitle}, ${price(guide.price)}`}
     >
       <div className="relative [perspective:1400px]">
         <div
@@ -35,7 +35,7 @@ export function GuideCard({
           <div className="pointer-events-none absolute inset-x-3 bottom-3 hidden translate-y-3 rounded-[3px] bg-paper/95 p-4 text-ink opacity-0 shadow-paper backdrop-blur-sm transition-all duration-500 ease-[var(--ease-out-soft)] group-hover:translate-y-0 group-hover:opacity-100 md:block">
             <p className="t-label text-muted">Dans le PDF</p>
             <p className="mt-2 text-sm leading-snug">
-              {guide.pages} pages · {guide.maps} cartes · {guide.addressesCount} adresses · budget jour par jour
+              {guide.pages} pages · {guide.maps} cartes · {guide.addressesCount} adresses · budgets indicatifs
             </p>
             <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium">
               Voir le guide <ArrowRight className="size-4" strokeWidth={1.6} />
@@ -47,7 +47,7 @@ export function GuideCard({
       <div className="mt-6 grid grid-cols-[1fr_auto] items-start gap-x-4 gap-y-3">
         <div className="min-w-0">
           <p className="t-label text-muted">
-            N° {guide.number} · {guide.days} jours
+            Vol. {guide.volume} · {guide.kind}
           </p>
           <h3 className="t-h3 mt-2">
             <span className="link-u">{guide.title}</span>
@@ -57,16 +57,16 @@ export function GuideCard({
         <PriceTag value={guide.price} size="sm" className="pt-5" />
         <dl className="col-span-2 grid grid-cols-3 gap-3 border-t border-line pt-3 text-graphite">
           <div>
-            <dt className="t-label text-[0.62rem] text-muted">Budget</dt>
-            <dd className="t-meta mt-1 text-ink">≈ {budget(guide.budget)}</dd>
+            <dt className="t-label text-[0.62rem] text-muted">{guide.count.label}</dt>
+            <dd className="t-meta mt-1 text-ink">{guide.count.value}</dd>
           </div>
           <div>
             <dt className="t-label text-[0.62rem] text-muted">Transport</dt>
             <dd className="mt-1.5 text-ink"><ModeRow modes={guide.modes} /></dd>
           </div>
           <div>
-            <dt className="t-label text-[0.62rem] text-muted">Logistique</dt>
-            <dd className="t-meta mt-1 text-ink">{guide.logistics}</dd>
+            <dt className="t-label text-[0.62rem] text-muted">Format</dt>
+            <dd className="t-meta mt-1 text-ink">PDF</dd>
           </div>
         </dl>
       </div>

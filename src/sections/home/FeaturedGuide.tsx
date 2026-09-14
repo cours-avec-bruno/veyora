@@ -34,7 +34,7 @@ export function FeaturedGuide() {
               <GuideCover guide={g} sizes="(min-width: 1024px) 34rem, 85vw" />
             </div>
             <span className="t-label absolute -bottom-10 left-0 text-paper/60">
-              Guide N° {g.number} · {g.pages} pages · PDF
+              Vol. {g.volume} · {g.pages} pages · PDF
             </span>
           </div>
         </Reveal>

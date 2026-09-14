@@ -174,7 +174,7 @@ export function Navbar() {
                 <Link href={`/guides/${featuredGuide.slug}`} className="flex items-center justify-between rounded-[3px] bg-forest p-4 text-paper">
                   <span>
                     <span className="t-label block text-paper/70">Guide du moment</span>
-                    <span className="mt-1 block font-serif text-2xl">{featuredGuide.title} · {featuredGuide.days} jours</span>
+                    <span className="mt-1 block font-serif text-2xl">{featuredGuide.title}</span>
                   </span>
                   <span className="t-meta">{price(featuredGuide.price)}</span>
                 </Link>

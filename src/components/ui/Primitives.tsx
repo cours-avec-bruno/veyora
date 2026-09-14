@@ -120,7 +120,7 @@ export function PriceTag({ value, className, size = "md" }: { value: number; cla
     <span className={cn("t-num inline-flex items-start leading-none", s, className)} aria-label={fmtPrice(value)}>
       <span aria-hidden>{int}</span>
       <span aria-hidden className="mt-[0.12em] ml-0.5 font-sans text-[0.38em] font-medium tracking-normal">
-        ,{dec} €
+        {dec ? `,${dec} ` : ""}€
       </span>
     </span>
   );

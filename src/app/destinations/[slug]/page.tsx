@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { destinations, getDestination } from "@/data/destinations";
 import { getGuide } from "@/data/guides";
+import { price } from "@/lib/format";
 import { photo } from "@/data/photos";
 import { site } from "@/data/site";
 import { Breadcrumb } from "@/components/layout/PageHero";
@@ -143,7 +144,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
             <div className="lg:col-span-7 lg:col-start-6">
               <Eyebrow index="03" tone="light">Le guide</Eyebrow>
               <h2 id="guide-cta-title" className="t-display mt-6 text-balance">
-                {d.name}, {guide.days} jours. <em>Déjà pensé.</em>
+                {d.name}, <em>déjà pensé.</em>
               </h2>
               <p className="t-lead mt-6 max-w-[48ch] text-paper/80">{guide.summary}</p>
               <div className="mt-10 flex flex-wrap items-center gap-8">
@@ -152,7 +153,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
                   Voir le guide
                 </ButtonLink>
               </div>
-              <p className="t-meta mt-6 text-paper/60">{guide.pages} pages · {guide.maps} cartes · {guide.addressesCount} adresses · budget ≈ {guide.budget} €</p>
+              <p className="t-meta mt-6 text-paper/60">{guide.title} · Vol. {guide.volume} · {guide.pages} pages · {guide.format}</p>
             </div>
           </div>
         </section>
@@ -173,7 +174,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
         </div>
       </section>
 
-      {guide && <MobileDock href={`/guides/${guide.slug}`} label={`Guide ${d.name} · ${guide.price.toFixed(2).replace(".", ",")} €`} />}
+      {guide && <MobileDock href={`/guides/${guide.slug}`} label={`${guide.title} · ${price(guide.price)}`} />}
     </>
   );
 }

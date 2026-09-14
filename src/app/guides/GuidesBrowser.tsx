@@ -53,7 +53,7 @@ const groups: { key: string; label: string; options: Option[] }[] = [
 ];
 
 const sorts = {
-  recommande: { label: "Recommandés", fn: (a: Guide, b: Guide) => a.number.localeCompare(b.number) },
+  recommande: { label: "Recommandés", fn: (a: Guide, b: Guide) => a.volume.localeCompare(b.volume) },
   budget: { label: "Budget croissant", fn: (a: Guide, b: Guide) => a.budget - b.budget },
   duree: { label: "Durée", fn: (a: Guide, b: Guide) => a.days - b.days },
 };

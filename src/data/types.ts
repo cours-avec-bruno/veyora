@@ -39,13 +39,40 @@ export type Address = {
   note: string;
 };
 
+/**
+ * A volume of the "Veyora Guides" collection — the thing that is sold.
+ *
+ * The itinerary-level fields further down (`days`, `budget`, `route`,
+ * `itinerary`, `budgetBreakdown`, `addresses`…) describe the *sample escapade*
+ * printed in the previews, named by `sample`. They are not the whole guide.
+ */
 export type Guide = {
   slug: string;
-  number: string;
+  /** "01", "02"… — the collection number, also the sort order */
+  volume: string;
+  kind: "Collection" | "Guide régional";
+  /** What the volume is for, in one word + one line */
+  intent: { word: string; line: string };
+  /** The escapade shown in previews, e.g. "Slovénie" */
+  sample: string;
   destinationSlug: string;
   title: string;
   subtitle: string;
-  coverTags: string[];
+  /** Brand promise, one sentence */
+  promise: string;
+  /** Cover typography. `numeral` switches to the large-number layout */
+  coverTitle: string[];
+  coverNumeral?: string;
+  tagline: string;
+  /** Short scope shown on cards: "10 destinations", "France · Alpes · Italie du Nord" */
+  scope: string;
+  area: string;
+  count: { value: number; label: string };
+  /** A few place names — never the full list */
+  places: string[];
+  contents: string[];
+  format: string;
+  duration: string;
   price: number;
   budget: number;
   days: number;

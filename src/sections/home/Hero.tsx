@@ -6,7 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useReducedMotionSafe } from "@/components/ui/Motion";
 import { ArrowDown } from "lucide-react";
 import { photo } from "@/data/photos";
-import { featuredGuide } from "@/data/guides";
+import { featuredGuide, guides } from "@/data/guides";
 import { ButtonLink } from "@/components/ui/Button";
 import { RouteMark } from "@/components/ui/Brand";
 import { ModeIcon } from "@/components/icons";
@@ -69,7 +69,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease, delay: 0.5 }}
         >
           <span className="inline-block size-1.5 rounded-full bg-clay" aria-hidden />
-          Édition printemps 2026<span className="hidden sm:inline"> · 8 guides</span> · 0 voiture
+          Édition printemps 2026<span className="hidden sm:inline"> · {guides.length} guides</span> · 0 voiture
         </motion.p>
 
         <h1 id="hero-title" className="mt-6 font-serif text-[clamp(3.4rem,8.2vw,8.4rem)] leading-[0.9] tracking-[-0.035em] md:mt-8" aria-label="Voyager plus loin. Dépenser moins.">

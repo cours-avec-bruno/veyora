@@ -3,7 +3,7 @@ import { CountUp, DrawPath } from "@/components/ui/Motion";
 import { Eyebrow } from "@/components/ui/Primitives";
 
 const figures = [
-  { value: 1, suffix: "", label: "destination", note: g.title, axis: "Où" },
+  { value: 1, suffix: "", label: "destination", note: g.sample, axis: "Où" },
   { value: g.days, suffix: "", label: "jours", note: "Du vendredi au lundi", axis: "Temps" },
   { value: g.budget, suffix: " €", label: "de budget", note: "Transport, lit, repas, sorties", axis: "Budget" },
   { value: 0, suffix: "", label: "voiture", note: "Train, bus, marche", axis: "Transport" },

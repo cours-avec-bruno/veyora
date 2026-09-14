@@ -108,7 +108,7 @@ export function Checkout() {
                     <div className="grid grid-cols-[4.5rem_1fr_auto] items-center gap-5 py-6 sm:grid-cols-[6rem_1fr_auto]">
                       <Link href={`/guides/${g.slug}`} className="block"><GuideCover guide={g} sizes="96px" /></Link>
                       <div className="min-w-0">
-                        <p className="t-label text-muted">Guide N° {g.number} · PDF</p>
+                        <p className="t-label text-muted">Vol. {g.volume} · PDF</p>
                         <p className="mt-1 font-serif text-3xl leading-none">{g.title}</p>
                         <p className="mt-1 text-graphite">{g.subtitle}</p>
                         <button type="button" onClick={() => remove(g.slug)} className="t-meta mt-3 inline-flex items-center gap-1.5 text-muted hover:text-clay">
