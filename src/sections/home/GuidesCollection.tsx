@@ -9,10 +9,10 @@ import { cn } from "@/lib/format";
 
 /**
  * The collection, presented like the opening spread of a small series:
- * one lead volume, the next volumes in a quieter register, then the shelf.
+ * one lead volume, the regional volumes paired beneath it, then the shelf.
  * New volumes come from `data/guides.ts` — nothing here needs rewriting.
  */
-const HOME_VOLUMES = 3; // lead + up to two secondary volumes; the shelf lists them all
+const HOME_VOLUMES = 3; // lead + two regional volumes; the shelf lists them all
 
 export function GuidesCollection() {
   const ordered = [...guides].sort((a, b) => a.volume.localeCompare(b.volume));
@@ -38,9 +38,7 @@ export function GuidesCollection() {
         </header>
 
         <LeadVolume guide={lead} />
-        {secondary.map((g, i) => (
-          <SecondaryVolume key={g.slug} guide={g} flip={i % 2 === 0} />
-        ))}
+        {secondary.length > 0 && <RegionalPair volumes={secondary} />}
 
         <Shelf volumes={ordered} />
       </div>
@@ -181,38 +179,51 @@ function LeadVolume({ guide: g }: { guide: Guide }) {
   );
 }
 
-/* ── Vol. 02+: closer, more precise, quieter ─────────────────────── */
+/* ── Vol. 02+: the regional guides, paired and offset ───────────── */
 
-function SecondaryVolume({ guide: g, flip }: { guide: Guide; flip: boolean }) {
+function RegionalPair({ volumes }: { volumes: Guide[] }) {
   return (
-    <article
-      aria-labelledby={`vol-${g.volume}`}
-      className="group/vol mt-16 grid gap-10 md:mt-20 lg:grid-cols-12 lg:items-center lg:gap-x-8"
-    >
-      <Reveal y={36} className={cn("lg:col-span-5", flip ? "lg:order-2 lg:col-start-8" : "")}>
-        <div
-          className={cn(
-            "relative -mx-[var(--gutter)] flex items-center justify-center bg-paper-3/70 px-[var(--gutter)] pt-10 pb-14 md:pt-12 md:pb-14",
-            flip ? "lg:ml-0 lg:pl-12" : "lg:mr-0 lg:pr-12",
-          )}
-        >
-          <Book guide={g} sizes="(min-width: 768px) 19rem, 62vw" className="w-[min(62vw,17rem)] md:w-[18rem] xl:w-[19rem]" />
-          <p className={cn("t-label absolute bottom-4 text-muted md:bottom-5", flip ? "right-[var(--gutter)]" : "left-[var(--gutter)]")}>
+    <div className="mt-20 md:mt-28">
+      <Reveal className="flex items-center gap-4">
+        <p className="t-label text-muted">Explorer une région</p>
+        <span aria-hidden className="h-px flex-1 bg-line" />
+        <p className="t-label text-muted">{volumes.length} guides régionaux</p>
+      </Reveal>
+      <div className="mt-10 grid gap-16 md:mt-12 lg:grid-cols-12 lg:gap-x-8">
+        {volumes.map((g, i) => (
+          <RegionalVolume
+            key={g.slug}
+            guide={g}
+            className={i % 2 === 0 ? "lg:col-span-5" : "lg:col-span-5 lg:col-start-8 lg:mt-24"}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RegionalVolume({ guide: g, className }: { guide: Guide; className?: string }) {
+  return (
+    <article aria-labelledby={`vol-${g.volume}`} className={cn("group/vol", className)}>
+      <Reveal y={36}>
+        <div className="relative -mx-[var(--gutter)] flex items-center justify-center bg-paper-3/70 px-[var(--gutter)] pt-10 pb-14 md:mx-0 md:pt-12">
+          <Book guide={g} sizes="(min-width: 768px) 17rem, 62vw" className="w-[min(62vw,16rem)] md:w-[17rem]" />
+          <p className="t-label absolute bottom-4 left-[var(--gutter)] text-muted md:left-5">
             Vol. {g.volume} · {g.pages} pages
           </p>
         </div>
       </Reveal>
 
-      <Reveal delay={0.1} className={cn("lg:col-span-5", flip ? "lg:order-1 lg:col-start-2" : "lg:col-start-7")}>
+      <Reveal delay={0.1} className="mt-9">
         <VolumeHead guide={g} />
 
-        <h3 id={`vol-${g.volume}`} className="mt-7 font-serif text-[clamp(2.3rem,3.9vw,3.7rem)] leading-[0.95] tracking-[-0.03em] text-balance">
+        <h3 id={`vol-${g.volume}`} className="mt-6 font-serif text-[clamp(2.3rem,3.6vw,3.4rem)] leading-[0.95] tracking-[-0.03em] text-balance">
           {g.title}
         </h3>
-        <p className="t-h3 mt-4 text-ink-2 italic">{g.subtitle}</p>
-        <p className="mt-5 max-w-[46ch] text-graphite text-pretty">{g.promise}</p>
+        <p className="mt-3 font-serif text-xl leading-snug text-ink-2 italic">{g.subtitle}</p>
+        <p className="mt-4 max-w-[46ch] text-[0.98rem] text-graphite text-pretty">{g.promise}</p>
 
-        <ul className="t-label mt-6 flex flex-wrap gap-x-2 gap-y-2 text-ink" aria-label="Régions couvertes">
+        <ul className="t-label mt-5 flex flex-wrap gap-x-2 gap-y-2 text-ink" aria-label="Régions couvertes">
           {g.places.map((p, i) => (
             <li key={p} className="flex items-center gap-2">
               {i > 0 && <span className="text-muted" aria-hidden>·</span>}
@@ -222,7 +233,7 @@ function SecondaryVolume({ guide: g, flip }: { guide: Guide; flip: boolean }) {
         </ul>
 
         <Facts
-          className="mt-7"
+          className="mt-6"
           items={[
             [g.count.label, String(g.count.value)],
             ["Transport", g.transport],
@@ -290,7 +301,7 @@ function Shelf({ volumes }: { volumes: Guide[] }) {
         </ol>
         <div className="mt-4 flex items-center justify-between gap-4">
           <p className="t-meta text-muted">
-            {volumes.length} volumes disponibles · {upcomingVolumes.length} en préparation
+            {volumes.length} volumes disponibles{upcomingVolumes.length > 0 && ` · ${upcomingVolumes.length} en préparation`}
           </p>
           <Link href="/guides" className="link-u-static t-meta whitespace-nowrap text-ink">
             Tous les guides

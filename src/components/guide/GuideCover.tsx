@@ -117,7 +117,12 @@ function RegionalLayout({ guide, t, img, sizes, priority }: LayoutProps) {
       <Masthead guide={guide} soft={t.soft} />
       <div className={cn("absolute inset-x-[7cqw] top-[12cqw] h-px", t.rule)} aria-hidden />
 
-      <h3 className="absolute inset-x-[7cqw] top-[16cqw] font-serif text-[13.2cqw] leading-[0.84] tracking-[-0.03em] uppercase">
+      <h3
+        className={cn(
+          "absolute inset-x-[7cqw] top-[16cqw] font-serif leading-[0.84] tracking-[-0.03em] uppercase",
+          guide.coverTitle.length === 1 ? "text-[24cqw]" : guide.coverTitle.length === 2 ? "text-[17cqw]" : "text-[13.2cqw]",
+        )}
+      >
         {guide.coverTitle.map((line) => (
           <span key={line} className="block">
             {line.startsWith("+") ? (
