@@ -45,3 +45,14 @@ next-env.d.ts
 
 # generated responsive images
 /public/images/_opt/
+
+# Guides — la chaîne de fabrication est versionnée, le produit ne l'est pas.
+# Le dépôt est public : ni le PDF vendu, ni le texte éditorial qu'il contient,
+# ni les médias téléchargés n'y ont leur place.
+guides/*/out/
+guides/*/assets/photos/
+guides/*/assets/print/
+guides/*/assets/candidates/
+guides/*/data/dest-*.mjs
+guides/*/data/editorial.mjs
+guides/*/data/meta.mjs
