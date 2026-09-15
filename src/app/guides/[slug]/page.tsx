@@ -139,6 +139,21 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
 
             <RouteLine stops={g.route} className="mt-10" />
 
+            {g.noCar && (
+              <Link
+                href="/impact"
+                className="mt-8 flex max-w-[52ch] items-start gap-4 border-l border-clay py-1 pl-5 transition-opacity hover:opacity-75"
+              >
+                <span>
+                  <span className="t-label block text-clay">Sans avion, sans voiture</span>
+                  <span className="t-meta mt-2 block text-graphite">
+                    Toutes les destinations de ce volume se rejoignent en train depuis la France, et se
+                    parcourent ensuite sans voiture. Voir notre position sur l&apos;impact →
+                  </span>
+                </span>
+              </Link>
+            )}
+
             <dl className="mt-10 grid grid-cols-2 border-t border-ink sm:grid-cols-3">
               {[
                 [`Budget · ${g.sample}`, `≈ ${budget(g.budget)}`],

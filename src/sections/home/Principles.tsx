@@ -1,9 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 import { photo } from "@/data/photos";
 import { Eyebrow } from "@/components/ui/Primitives";
 import { Reveal, SplitTitle } from "@/components/ui/Motion";
 
-const principles = [
+const principles: {
+  n: string;
+  title: string;
+  text: string;
+  detail: string;
+  glyph: React.ReactNode;
+  href?: string;
+  hrefLabel?: string;
+}[] = [
   {
     n: "01",
     title: "Moins cher",
@@ -21,8 +30,10 @@ const principles = [
   {
     n: "02",
     title: "Moins d'impact",
-    text: "Privilégier le train, le bus, le covoiturage et les alternatives pertinentes lorsque cela a du sens.",
-    detail: "Et le dire franchement quand l'avion reste le choix raisonnable.",
+    text: "Le train quand il gagne — et sur nos liaisons, il gagne presque toujours : de centre à centre, sans transfert d'aéroport, autour de 2 à 3 g de CO₂e par voyageur·kilomètre contre 230 à 260 pour l'avion.",
+    detail: "Et le dire franchement quand la voiture ou l'avion reste le choix raisonnable.",
+    href: "/impact",
+    hrefLabel: "Notre position sur l'impact",
     glyph: (
       <svg viewBox="0 0 64 24" className="h-6 w-auto" aria-hidden>
         <path d="M2 12h60" className="stroke-ink" strokeWidth="1" strokeDasharray="3 3" />
@@ -98,6 +109,15 @@ export function Principles() {
               <h3 className="t-h2 mt-6">{p.title}</h3>
               <p className="mt-4 max-w-[34ch] text-[1.05rem] leading-relaxed text-ink-2 text-pretty">{p.text}</p>
               <p className="t-meta mt-6 max-w-[34ch] text-muted">— {p.detail}</p>
+              {p.href && (
+                <Link
+                  href={p.href}
+                  className="t-label mt-6 inline-flex items-center gap-2 text-clay transition-opacity hover:opacity-70"
+                >
+                  {p.hrefLabel}
+                  <span aria-hidden>→</span>
+                </Link>
+              )}
             </Reveal>
           ))}
         </ol>

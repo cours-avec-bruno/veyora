@@ -14,6 +14,7 @@ export const mainNav = [
   { href: "/guides", label: "Guides" },
   { href: "/journal", label: "Journal" },
   { href: "/methode", label: "Notre méthode" },
+  { href: "/impact", label: "Impact" },
 ];
 
 export const footerNav = [
@@ -29,6 +30,7 @@ export const footerNav = [
     title: "Veyora",
     links: [
       { href: "/methode", label: "Notre méthode" },
+      { href: "/impact", label: "L'impact" },
       { href: "/a-propos", label: "À propos" },
       { href: "/contact", label: "Contact" },
     ],
