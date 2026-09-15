@@ -7,7 +7,6 @@ import { FeaturedGuide } from "@/sections/home/FeaturedGuide";
 import { InsideGuide } from "@/sections/home/InsideGuide";
 import { Figures } from "@/sections/home/Figures";
 import { Method } from "@/sections/home/Method";
-import { Impact } from "@/sections/home/Impact";
 import { Social } from "@/sections/home/Social";
 import { Manifesto } from "@/sections/home/Manifesto";
 import { Newsletter } from "@/sections/home/Newsletter";
@@ -25,7 +24,6 @@ export default function Home() {
       <InsideGuide />
       <Figures />
       <Method />
-      <Impact />
       <Social />
       <Manifesto />
       <Newsletter />
