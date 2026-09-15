@@ -171,6 +171,11 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
                 <li className="flex items-center gap-2"><RefreshCw className="size-4 text-forest" strokeWidth={1.5} /> Mises à jour offertes</li>
                 <li className="flex items-center gap-2"><Smartphone className="size-4 text-forest" strokeWidth={1.5} /> Lisible hors ligne</li>
               </ul>
+              {g.noCar && (
+                <p className="t-meta mt-5 text-muted">
+                  Les {g.count.value} {g.count.label} se rejoignent en train, et se parcourent sans voiture.
+                </p>
+              )}
             </div>
             <p className="t-meta mt-4 text-muted">{g.updated} · {g.gateway}</p>
           </div>

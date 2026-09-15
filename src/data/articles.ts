@@ -11,7 +11,7 @@ export const articles: Article[] = [
     date: "2026-09-12",
     image: "train-lake",
     author: "La rédaction Veyora",
-    relatedGuide: "italie-du-nord",
+    relatedGuide: "italie",
     body: [
       { type: "p", text: "Prendre le train pour partir en vacances a longtemps ressemblé à un choix militant. Ce n'est plus le cas : sur ces sept destinations, le train est souvent plus simple, parfois moins cher, et presque toujours plus beau que l'avion." },
       { type: "h2", text: "Ce qu'on a retenu" },
@@ -33,7 +33,7 @@ export const articles: Article[] = [
     date: "2026-09-04",
     image: "milan-arch",
     author: "La rédaction Veyora",
-    relatedGuide: "italie-du-nord",
+    relatedGuide: "italie",
     body: [
       { type: "p", text: "Milan a la réputation d'une ville chère. Elle l'est, si l'on dort dans le quadrilatère de la mode et que l'on dîne à Brera. On a fait l'inverse, en notant chaque dépense." },
       { type: "figures", items: [{ value: "58 €", label: "Train aller-retour depuis Lyon" }, { value: "76 €", label: "2 nuits près de Centrale" }, { value: "52 €", label: "Repas, cafés, aperitivo" }] },

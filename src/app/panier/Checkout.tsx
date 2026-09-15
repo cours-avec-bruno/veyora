@@ -38,6 +38,9 @@ export function Checkout() {
           <p className="t-lead mt-6 max-w-[44ch] text-graphite">
             Vos guides sont prêts. Un lien de téléchargement vient aussi d&apos;être envoyé à <strong className="font-medium text-ink">{email}</strong>.
           </p>
+          <p className="t-meta mt-6 text-muted">
+            Réservez vos trains tôt — c&apos;est là que se joue l&apos;essentiel, du budget comme de l&apos;empreinte.
+          </p>
           <p className="t-meta mt-4 text-muted">Maquette : aucun paiement n&apos;a été effectué.</p>
         </div>
         <ul className="space-y-4 lg:col-span-5 lg:col-start-8">
@@ -222,6 +225,7 @@ export function Checkout() {
             <span className="t-meta">TVA incluse</span>
             <span className="t-meta">Livraison : instantanée</span>
           </div>
+          <p className="t-meta mt-3 text-paper/45">Fichier numérique : ni impression, ni envoi, ni stock.</p>
           <div className="mt-6 flex items-end justify-between">
             <span className="t-label text-paper/60">Total</span>
             <PriceTag value={total} size="md" />

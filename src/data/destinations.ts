@@ -79,7 +79,7 @@ export const destinations: Destination[] = [
     coords: "46.01° N · 9.28° E",
     image: "varenna",
     secondaryImage: "milan-tram",
-    guideSlug: "italie-du-nord",
+    guideSlug: "italie",
     why: [
       { title: "Direct depuis la France", text: "Frecciarossa Paris–Milan en 7 h, Lyon–Milan en 5 h." },
       { title: "Le lac côté villages", text: "Varenna et Bellano plutôt que Côme, pour moitié prix." },
